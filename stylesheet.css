@@ -1,0 +1,106 @@
+:root {
+      --main-pink: #e75480;
+      --light-pink: #fcdde2;
+      --dark-blue: #071d36;
+      --background: #FFFBF7;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--background);
+      color: #333;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    header {
+      background-color: var(--dark-blue);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .menu-icon {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .menu {
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      background-color: var(--light-pink);
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .menu a {
+      color: var(--main-pink);
+      text-decoration: none;
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--main-pink);
+    }
+
+    .wishlist-item {
+      background-color: white;
+      border: 2px solid var(--main-pink);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .wishlist-item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .wishlist-item h2,
+    .wishlist-item p {
+      margin: 0.5rem 0;
+    }
+
+    .progress {
+      background-color: var(--light-pink);
+      border-radius: 10px;
+      overflow: hidden;
+      height: 12px;
+      margin-top: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: var(--main-pink);
+      width: 60%;
+    }
+
+    footer {
+      background-color: var(--light-pink);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }

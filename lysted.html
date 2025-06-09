@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lysted</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        Lysted
+        <div class="menu" id="menu">
+            <a href="#">All Transactions</a>
+            <a href="edit.html">Edit Wishlist</a>
+            <a href="#">Manage Goals</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h1>My Wishlist</h1>
+        <div class="wishlist-item">
+            <img src="creamspezial.png" alt="Wishlist Item">
+            <h2>Adidas Shoes</h2>
+            <p>Track-ready sneakers with style.</p>
+            <p><strong>Price:</strong> $120</p>
+            <div class="progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+  <footer>
+    &copy; 2025 Lysted Tracker
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function updateImage(url) {
+      const img = document.getElementById("item-img");
+      img.src = url;
+    }
+
+    function updateProgress(saved, total) {
+      const percent = Math.min((saved / total) * 100, 100);
+      document.getElementById("progress-bar").style.width = percent + "%";
+    }
+  </script>
+
+</body>
