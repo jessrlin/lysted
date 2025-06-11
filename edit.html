@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"></head>
+
+  <title>Lysted</title>
+  <style>
+    body {
+      margin: 0;
+      background-color:#EEF4ED;
+      color: #333;
+    }
+
+    header {
+      background-color: #0B2545;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-family: "Edu NSW ACT Cursive", cursive;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .home-btn {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .home-btn img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
+    }
+
+    h1 {
+      text-align: center;
+      color:#13315C;
+      font-family: "Edu NSW ACT Cursive", cursive;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      padding-top: 2%;
+    }
+
+    .container {
+      padding: 1rem;
+    }
+
+    .edit-item {
+      font-family: "Quicksand", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 300;
+      font-style: normal;
+      background-color: white;
+      border: 2px solid #C5DDC1;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .edit-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .edit-item input,
+    .edit-item textarea {
+      width: 100%;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .edit-item label {
+      font-weight: bold;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    button.save-btn {
+      background-color: #13315C;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      font-family: "Quicksand", sans-serif;
+      background-color:#134074;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #EEF4ED;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <a href="lysted.html" class="home-btn">
+      <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home">
+    </a>
+    Lysted
+  </header>
+
+  <h1>Edit Your Wishlist Items</h1>
+  <div class="container" id="edit-container">
+  </div>
+
+  <footer>
+    &copy; 2025 Lysted Tracker
+  </footer>
+
+  <script>
+    const items = [
+      {
+        name: "Adidas Shoes",
+        description: "Track-ready sneakers with style.",
+        price: 120,
+        image: "https://via.placeholder.com/300"
+      },
+      {
+        name: "Concert Ticket",
+        description: "VIP pass to my favourite artist.",
+        price: 85,
+        image: "https://via.placeholder.com/300"
+      }
+    ];
+
+    const container = document.getElementById("edit-container");
+
+    items.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "edit-item";
+      div.innerHTML = `
+        <label>Preview Image:</label>
+        <img id="preview-${index}" src="${item.image}" alt="Item Image">
+
+        <label for="image-${index}">Change Image:</label>
+        <input type="file" id="image-${index}" accept="image/*">
+
+        <label for="name-${index}">Name:</label>
+        <input type="text" id="name-${index}" value="${item.name}">
+
+        <label for="desc-${index}">Description:</label>
+        <textarea id="desc-${index}">${item.description}</textarea>
+
+        <label for="price-${index}">Price ($):</label>
+        <input type="number" id="price-${index}" value="${item.price}">
+
+        <button class="save-btn" onclick="saveItem(${index})">Save</button>
+      `;
+      container.appendChild(div);
+
+      document.getElementById(`image-${index}`).addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            document.getElementById(`preview-${index}`).src = e.target.result;
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+
+    function saveItem(index) {
+  items[index] = {
+    name: document.getElementById(`name-${index}`).value,
+    description: document.getElementById(`desc-${index}`).value,
+    price: document.getElementById(`price-${index}`).value,
+    image: document.getElementById(`preview-${index}`).src
+  };
+
+  // Save the whole updated array to localStorage
+  localStorage.setItem("wishlistItems", JSON.stringify(items));
+  alert("Item saved! Go back to the homepage to see changes.");
+}
+
+  </script>
+</body>
+</html>
