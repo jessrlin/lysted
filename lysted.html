@@ -14,53 +14,55 @@
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         Lysted
         <div class="menu" id="menu">
-            <a href="#">All Transactions</a>
+            <a href="savings.html">Manage Savings</a>
             <a href="edit.html">Edit Wishlist</a>
-            <a href="#">Manage Goals</a>
         </div>
     </header>
     
     <div class="container">
-        <h1>My Wishlist</h1>
-        <div class="wishlist-item">
-            <img src="photos/navyspezial.png" alt="Shoe">
-            <h2>Adidas Shoes</h2>
-            <p>Track-ready sneakers with style.</p>
-            <p><strong>Price:</strong> $120</p>
-            <div class="progress">
-                <div class="progress-bar"></div>
-            </div>
-        </div>
-        <div class="wishlist-item">
-            <img src="photos/amara.png" alt="Top">
-            <h2>Brandy </h2>
-            <p>Track-ready sneakers with style.</p>
-            <p><strong>Price:</strong> $120</p>
-            <div class="progress">
-                <div class="progress-bar"></div>
-            </div>
-        </div>
+      <h1>My Wishlist</h1>
+      <div id="wishlist-container"></div>
     </div>
 
   <footer>
-    &copy; 2025 Lysted Tracker
+    &copy; 2025 Lysted Tracker ~
+    Love it? Lyst it
   </footer>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
+  function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  }
 
-    function updateImage(url) {
-      const img = document.getElementById("item-img");
-      img.src = url;
-    }
+  const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+  const container = document.getElementById("wishlist-container");
 
-    function updateProgress(saved, total) {
-      const percent = Math.min((saved / total) * 100, 100);
-      document.getElementById("progress-bar").style.width = percent + "%";
-    }
-  </script>
+if (items.length === 0) {
+  container.innerHTML = "<p style='text-align:center;'>You have no wishlist items. Go to the Edit page to add some!</p>";
+} else {
+  items.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "wishlist-item";
+
+    const percent = item.saved && item.price ? Math.min((item.saved / item.price) * 100, 100) : 0;
+
+    div.innerHTML = `
+      <img src="${item.image}" alt="Wishlist Image">
+      <h2>${item.name}</h2>
+      <p>${item.description}</p>
+      <p><strong>Price:</strong> $${item.price}</p>
+      <div class="progress">
+        <div class="progress-bar" id="progress-${index}" style="width: ${percent}%"></div>
+      </div>
+      <div style="margin-top: 0.5rem;">
+        <a href="item.html?id=${index}" style="text-decoration:none; color:#13315C;">View Details</a>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+</script>
 
 </body>
