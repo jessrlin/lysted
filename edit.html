@@ -1,254 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"></head>
-
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  </head>
   <title>Lysted</title>
   <style>
     body {
-      margin: 0;
-      background-color:#EEF4ED;
-      color: #333;
+    margin: 0;
+    background-color:#EEF4ED;
+    color: #333;
     }
-
     header {
-      background-color: #0B2545;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      font-family: "Edu NSW ACT Cursive", cursive;
-      font-optical-sizing: auto;
-      font-weight: 400;
-      font-style: normal;
-      font-size: 2rem;
-      position: relative;
+    background-color: #0B2545;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    position: relative;
     }
-
     .home-btn {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
     }
-
     .home-btn img {
-      width: 24px;
-      height: 24px;
-      filter: brightness(0) invert(1);
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
     }
-
     h1 {
-      text-align: center;
-      color:#13315C;
-      font-family: "Edu NSW ACT Cursive", cursive;
-      font-optical-sizing: auto;
-      font-weight: 400;
-      font-style: normal;
-      padding-top: 2%;
+    text-align: center;
+    color:#13315C;
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding-top: 2%;
     }
-
     .container {
-      padding: 1rem;
+    padding: 1rem;
     }
-
     .edit-item {
-      font-family: "Quicksand", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 300;
-      font-style: normal;
-      background-color: white;
-      border: 2px solid #C5DDC1;
-      border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 1rem;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    background-color: white;
+    border: 2px solid #C5DDC1;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
     }
-
     .edit-item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 0.5rem;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
     }
-
     .edit-item input,
     .edit-item textarea {
-      width: 100%;
-      margin-bottom: 0.5rem;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     }
-
     .edit-item label {
-      font-weight: bold;
-      margin-top: 0.5rem;
-      display: block;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    display: block;
     }
-
     button.save-btn {
-      background-color: #13315C;
-      color: white;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
+    background-color: #13315C;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
     }
-
     button.delete-btn {
-      background-color: #13315C;
-      color: white;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
+    background-color: #13315C;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
     }
-
     footer {
-      font-family: "Quicksand", sans-serif;
-      background-color:#134074;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #EEF4ED;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
+    font-family: "Quicksand", sans-serif;
+    background-color:#134074;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #EEF4ED;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
     }
-
   </style>
-</head>
-<body>
-  <header>
-    <a href="lysted.html" class="home-btn">
+  </head>
+  <body>
+    <header>
+      <a href="lysted.html" class="home-btn">
       <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home">
-    </a>
-    Lysted
-  </header>
-
-  <h1>Edit Your Wishlist Items</h1>
-  <button onclick="addNewItem()" style="display:block;margin:1rem auto;">+ Add New Item</button>
-
-  <div class="container" id="edit-container">
-  </div>
-
-  <footer>
-    &copy; 2025 Lysted Tracker
-  </footer>
-
-  <script>
-  let items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
-  const container = document.getElementById("edit-container");
-
-  function renderItems() {
-    container.innerHTML = "";
-
-    items.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "edit-item";
-
-      // Use template literals with data attributes (not IDs)
-      div.innerHTML = `
-        <label>Preview Image:</label>
-        <img src="${item.image}" alt="Item Image" class="preview-img">
-
-        <label>Change Image:</label>
-        <input type="file" class="image-input" accept="image/*">
-
-        <label>Name:</label>
-        <input type="text" class="name-input" value="${item.name}">
-
-        <label>Description:</label>
-        <textarea class="desc-input">${item.description}</textarea>
-
-        <label>Price ($):</label>
-        <input type="number" class="price-input" value="${item.price}">
-
-        <div style="margin-top: 1rem;">
-          <button class="save-btn">Save</button>
-          <button class="delete-btn" style="margin-left: 0.5rem;">Delete</button>
-        </div>
-      `;
-
-      // Append card to container
-      container.appendChild(div);
-
-      // Get elements inside the card
-      const previewImg = div.querySelector(".preview-img");
-      const fileInput = div.querySelector(".image-input");
-      const nameInput = div.querySelector(".name-input");
-      const descInput = div.querySelector(".desc-input");
-      const priceInput = div.querySelector(".price-input");
-      const saveBtn = div.querySelector(".save-btn");
-      const deleteBtn = div.querySelector(".delete-btn");
+      </a>
+      Lysted
+    </header>
+    <h1>Edit Your Wishlist Items</h1>
+    <button onclick="addNewItem()" style="display:block;margin:1rem auto;">+ Add New Item</button>
+    <div class="container" id="edit-container">
+    </div>
+    <footer>
+      &copy; 2025 Lysted Tracker
+    </footer>
+    <script>
+      let items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+      const container = document.getElementById("edit-container");
       
-
-
-      // Live image preview
-      fileInput.addEventListener("change", (event) => {
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            previewImg.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-
-      // Save item
-  
-      saveBtn.addEventListener("click", () => {
-        items[index] = {
-          name: nameInput.value,
-          description: descInput.value,
-          price: parseFloat(priceInput.value),
-          image: previewImg.src,
-          saved: items[index].saved || 0,
-          transactions: items[index].transactions || [],
-          confirmed: true, // only added when "Save" is clicked
-          archived: items[index].archived || false // preserve archive status if it exists
-        };
+      function renderItems() {
+        container.innerHTML = "";
+      
+        items.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.className = "edit-item";
+      
+          // Use template literals with data attributes (not IDs)
+          div.innerHTML = `
+            <label>Preview Image:</label>
+            <img src="${item.image}" alt="Item Image" class="preview-img">
+      
+            <label>Change Image:</label>
+            <input type="file" class="image-input" accept="image/*">
+      
+            <label>Name:</label>
+            <input type="text" class="name-input" value="${item.name}">
+      
+            <label>Description:</label>
+            <textarea class="desc-input">${item.description}</textarea>
+      
+            <label>Price ($):</label>
+            <input type="number" class="price-input" value="${item.price}">
+      
+            <div style="margin-top: 1rem;">
+              <button class="save-btn">Save</button>
+              <button class="delete-btn" style="margin-left: 0.5rem;">Delete</button>
+            </div>
+          `;
+      
+          // Append card to container
+          container.appendChild(div);
+      
+          // Get elements inside the card
+          const previewImg = div.querySelector(".preview-img");
+          const fileInput = div.querySelector(".image-input");
+          const nameInput = div.querySelector(".name-input");
+          const descInput = div.querySelector(".desc-input");
+          const priceInput = div.querySelector(".price-input");
+          const saveBtn = div.querySelector(".save-btn");
+          const deleteBtn = div.querySelector(".delete-btn");
+          
+      
+      
+          // Live image preview
+          fileInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                previewImg.src = e.target.result;
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+      
+          // Save item
+      
+          saveBtn.addEventListener("click", () => {
+            items[index] = {
+              name: nameInput.value,
+              description: descInput.value,
+              price: parseFloat(priceInput.value),
+              image: previewImg.src,
+              saved: items[index].saved || 0,
+              transactions: items[index].transactions || [],
+              confirmed: true, // only added when "Save" is clicked
+              archived: items[index].archived || false // preserve archive status if it exists
+            };
+            localStorage.setItem("wishlistItems", JSON.stringify(items));
+            alert("Item saved!");
+          });
+      
+          // Delete item
+          deleteBtn.addEventListener("click", () => {
+            if (confirm("Are you sure you want to delete this item?")) {
+              items.splice(index, 1);
+              localStorage.setItem("wishlistItems", JSON.stringify(items));
+              renderItems(); // Refresh after delete
+            }
+          });
+        });
+      }
+      
+      function addNewItem() {
+        items.unshift({
+          name: "",
+          description: "",
+          price: 0,
+          image: "",
+          saved: 0,
+          transactions: [],
+          confirmed: false 
+        });
+      
         localStorage.setItem("wishlistItems", JSON.stringify(items));
-        alert("Item saved!");
+        renderItems();
+      }
+      
+      window.addEventListener("beforeunload", function (e) {
+      const unsaved = items.some(item => item.confirmed === false);
+      if (unsaved) {
+        e.preventDefault();
+        e.returnValue = ""; // Required for Chrome + Firefox
+      }
       });
-
-      // Delete item
-      deleteBtn.addEventListener("click", () => {
-        if (confirm("Are you sure you want to delete this item?")) {
-          items.splice(index, 1);
-          localStorage.setItem("wishlistItems", JSON.stringify(items));
-          renderItems(); // Refresh after delete
-        }
-      });
-    });
-  }
-
-  function addNewItem() {
-    items.unshift({
-      name: "",
-      description: "",
-      price: 0,
-      image: "",
-      saved: 0,
-      transactions: [],
-      confirmed: false 
-    });
-    
-    localStorage.setItem("wishlistItems", JSON.stringify(items));
-    renderItems();
-  }
-
-  renderItems(); // Initial render
-</script>
-
-</body>
+      
+      
+      renderItems(); // Initial render
+    </script>
+  </body>
 </html>

@@ -1,219 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"></head>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  </head>
   <style>
     body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background-color:#EEF4ED;
-      color: #333;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color:#EEF4ED;
+    color: #333;
     }
-
     header {
-      background-color: #0B2545;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      font-family: "Edu NSW ACT Cursive", cursive;
-      font-optical-sizing: auto;
-      font-weight: 400;
-      font-style: normal;
-      font-size: 2rem;
-      position: relative;
+    background-color: #0B2545;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    position: relative;
     }
-
     .home-btn {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
     }
-
     .home-btn img {
-      width: 24px;
-      height: 24px;
-      filter: brightness(0) invert(1);
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
     }
-
     .container {
-      padding: 1rem;
-      max-width: 600px;
-      margin: auto;
+    padding: 1rem;
+    max-width: 600px;
+    margin: auto;
     }
-
     h1 {
-      text-align: center;
-      color:#13315C;
-      font-family: "Edu NSW ACT Cursive", cursive;
-      font-optical-sizing: auto;
-      font-weight: 400;
-      font-style: normal;
-      padding-top: 2%;
+    text-align: center;
+    color:#13315C;
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding-top: 2%;
     }
-
     .saving-item {
-      background-color: white;
-      border: 2px solid #C5DDC1;
-      border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 1rem;
+    background-color: white;
+    border: 2px solid #C5DDC1;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
     }
-
     input[type='number'] {
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      margin-top: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 0.5rem;
     }
-
     button {
-      background-color: #13315C;
-      color: white;
-      padding: 0.7rem 1.2rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      display: block;
-      margin: 2rem auto;
+    background-color: #13315C;
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    margin: 2rem auto;
     }
-
     .total-pay {
-      margin-bottom: 2rem;
+    margin-bottom: 2rem;
     }
-
     footer {
-      background-color: #134074;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #EEF4ED;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+    background-color: #134074;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #EEF4ED;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     }
   </style>
-</head>
-<body>
-  <header>
-    <a href="lysted.html" class="home-btn">
+  </head>
+  <body>
+    <header>
+      <a href="lysted.html" class="home-btn">
       <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home">
-    </a>
-    Lysted
-  </header>
-
-  <div class="container">
-    <h1>Distribute Your Savings</h1>
-    <label for="paycheck">Enter Total Paycheck Amount ($):</label>
-    <input type="number" id="paycheck" class="total-pay" placeholder="e.g. 100">
-
-    <div id="savings-container"></div>
-    <button onclick="applySavings()">Apply Savings</button>
-  </div>
-
-  <footer>
-    &copy; 2025 Lysted Tracker
-  </footer>
-
-  <script>
-    let items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
-    const savingsContainer = document.getElementById("savings-container");
-
-    if (items.length === 0) {
-      savingsContainer.innerHTML = "<p style='text-align:center;'>No wishlist items found.</p>";
-    } else {
-      items.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.className = "saving-item";
-        div.innerHTML = `
-          <h3>${item.name}</h3>
-          <p>Goal: $${item.price}</p>
-          <p>Currently Saved: $${item.saved || 0}</p>
-          <label for="amount-${index}">Add amount to this goal:</label>
-          <input type="number" id="amount-${index}" placeholder="e.g. 25" max="${Math.max(item.price - (item.saved || 0), 0)}">
-        `;
-        savingsContainer.appendChild(div);
-      });
-    }
-
-    function applySavings() {
-  const paycheckInput = document.getElementById("paycheck");
-  const totalPay = parseFloat(paycheckInput.value);
-
-  if (isNaN(totalPay) || totalPay <= 0) {
-    alert("Please enter a valid paycheck amount.");
-    return;
-  }
-
-  let totalAllocated = 0;
-  const updates = [];
-
-  items.forEach((item, index) => {
-    const input = document.getElementById(`amount-${index}`);
-    const amount = parseFloat(input.value);
-
-    if (!isNaN(amount) && amount > 0) {
-      const remaining = item.price - (item.saved || 0);
-      if (amount > remaining) {
-        alert(`You can't add $${amount} to "${item.name}". Only $${remaining.toFixed(2)} left to reach the goal.`);
+      </a>
+      Lysted
+    </header>
+    <div class="container">
+      <h1>Distribute Your Savings</h1>
+      <label for="paycheck">Enter Total Paycheck Amount ($):</label>
+      <input type="number" id="paycheck" class="total-pay" placeholder="e.g. 100" min="1" max="1000000" step="1" oninput="sanitizeNumberInput(this)">
+      <button id="confirmBtn" onclick="confirmPaycheck()">Confirm Paycheck</button>
+      <div id="savings-container"></div>
+      <button onclick="applySavings()">Apply Savings</button>
+    </div>
+    <footer>
+      &copy; 2025 Lysted Tracker
+    </footer>
+    <script>
+      let items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+      const savingsContainer = document.getElementById("savings-container");
+      
+      if (items.length === 0) {
+        savingsContainer.innerHTML = "<p style='text-align:center;'>No wishlist items found.</p>";
+      } else {
+        items.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.className = "saving-item";
+          div.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>Goal: $${item.price}</p>
+            <p>Currently Saved: $${item.saved || 0}</p>
+            <label for="amount-${index}">Add amount to this goal:</label>
+            <input type="number" id="amount-${index}" placeholder="e.g. 25" max="${Math.max(item.price - (item.saved || 0), 0)}" min="1" step="1" oninput="sanitizeNumberInput(this)">
+          `;
+          savingsContainer.appendChild(div);
+        });
+      }
+      
+      function sanitizeNumberInput(input) {
+      // Prevent invalid characters like e, +, -, etc.
+      input.value = input.value.replace(/[^0-9.]/g, '');
+      
+      // Ensure value is not negative
+      if (parseFloat(input.value) < 0) {
+      input.value = "";
+      }
+      
+      // Enforce max limit of 1,000,000
+      if (parseFloat(input.value) > 1000000) {
+      input.value = "1000000";
+      }
+      }
+      
+      function confirmPaycheck() {
+      const paycheckInput = document.getElementById("paycheck");
+      const applyBtn = document.getElementById("applyBtn");
+      
+      const totalPay = parseFloat(paycheckInput.value);
+      
+      if (isNaN(totalPay) || totalPay <= 0 || totalPay > 1000000) {
+      alert("Please enter a valid paycheck amount between 0 and 1,000,000.");
+      return;
+      }
+      
+      const isConfirmed = confirm(`Confirm paycheck amount: $${totalPay.toFixed(2)}?`);
+      if (isConfirmed) {
+      // Disable the input to prevent changes
+      paycheckInput.disabled = true;
+      applyBtn.disabled = false; // Enable apply button
+      document.getElementById("confirmBtn").disabled = true; // Disable confirm to prevent re-confirming
+      }
+      }
+      
+      function applySavings() {
+      const paycheckInput = document.getElementById("paycheck");
+      const totalPay = parseFloat(paycheckInput.value);
+      
+      if (isNaN(totalPay) || totalPay <= 0) {
+        alert("Please enter a valid paycheck amount.");
         return;
       }
-      totalAllocated += amount;
-      updates.push({ index, amount });
-    }
-
-  });
-
-  if (totalAllocated > totalPay) {
-    alert("You've allocated more than your total paycheck.");
-    return;
-  }
-
-  updates.forEach(({ index, amount }) => {
-    const item = items[index];
-    item.saved = (parseFloat(item.saved) || 0) + amount;
-
-    if (!item.transactions) item.transactions = [];
-    item.transactions.push({
-      amount: amount,
-      date: new Date().toLocaleDateString("en-NZ")
-    });
-  });
-
-  localStorage.setItem("wishlistItems", JSON.stringify(items));
-
-  const leftover = totalPay - totalAllocated;
-  if (leftover > 0) {
-    const useLeftover = confirm(`You have $${leftover.toFixed(2)} leftover. Do you want to add it to your general savings?`);
-    if (useLeftover) {
-      const existingLeftover = parseFloat(localStorage.getItem("leftoverSavings")) || 0;
-      const updatedLeftover = existingLeftover + leftover;
-      localStorage.setItem("leftoverSavings", updatedLeftover.toFixed(2));
-      alert(`$${leftover.toFixed(2)} added to general savings.`);
-    }
-  }
-
-  paycheckInput.value = "";
-  items.forEach((_, index) => {
-    document.getElementById(`amount-${index}`).value = "";
-  });
-
-  location.reload();
-
-}
-
-
-    
-  </script>
-</body>
+      
+      let totalAllocated = 0;
+      const updates = [];
+      
+      items.forEach((item, index) => {
+        const input = document.getElementById(`amount-${index}`);
+        const amount = parseFloat(input.value);
+      
+      if (!isNaN(amount) && amount > 0) {
+        const remaining = item.price - (item.saved || 0);
+        if (amount > remaining) {
+          alert(`You can't add $${amount} to "${item.name}". Only $${remaining.toFixed(2)} left to reach the goal.`);
+          return;
+        }
+        totalAllocated += amount;
+        updates.push({ index, amount });
+      }
+      
+      });
+      
+      if (totalAllocated > totalPay) {
+      alert("You've allocated more than your total paycheck.");
+      return;
+      }
+      
+      updates.forEach(({ index, amount }) => {
+      const item = items[index];
+      item.saved = (parseFloat(item.saved) || 0) + amount;
+      
+      if (!item.transactions) item.transactions = [];
+      item.transactions.push({
+        amount: amount,
+        date: new Date().toLocaleDateString("en-NZ")
+      });
+      });
+      
+      localStorage.setItem("wishlistItems", JSON.stringify(items));
+      
+      const leftover = totalPay - totalAllocated;
+      if (leftover > 0) {
+      const useLeftover = confirm(`You have $${leftover.toFixed(2)} leftover. Do you want to add it to your general savings?`);
+      if (useLeftover) {
+        const existingLeftover = parseFloat(localStorage.getItem("leftoverSavings")) || 0;
+        const updatedLeftover = existingLeftover + leftover;
+        localStorage.setItem("leftoverSavings", updatedLeftover.toFixed(2));
+        alert(`$${leftover.toFixed(2)} added to general savings.`);
+      }
+      }
+      
+      paycheckInput.value = "";
+      items.forEach((_, index) => {
+      document.getElementById(`amount-${index}`).value = "";
+      });
+      
+      location.reload();
+      
+      }
+      
+      
+      
+    </script>
+  </body>
 </html>

@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lysted</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"></head>
-
-<body>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  </head>
+  <body>
     <header>
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        Lysted
-        <div class="menu" id="menu">
-            <a href="savings.html">Manage Savings</a>
-            <a href="edit.html">Edit Wishlist</a>
-            <a href="archived.html">Archived Items</a>
-        </div>
+      <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+      Lysted
+      <div class="menu" id="menu">
+        <a href="savings.html">Manage Savings</a>
+        <a href="edit.html">Edit Wishlist</a>
+        <a href="archived.html">Archived Items</a>
+      </div>
     </header>
-    
     <div class="container">
       <h1 >My Wishlist</h1>
       <div id="wishlist-container"></div>
     </div>
-
     <div id="popup-overlay" style="display: none;" class="popup-overlay">
       <div class="popup">
         <span class="close-btn" onclick="hidePopup()">&times;</span>
@@ -32,97 +30,104 @@
         <ul id="transaction-list"></ul>
       </div>
     </div>
-
-
     <footer>
       &copy; 2025 Lysted Tracker ~
       Love it? Lyst it!
+      <button id="newUserBtn" class="new-user-btn" style="margin-left: 1rem;">New User</button>
     </footer>
-
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
-
-  const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
-  const container = document.getElementById("wishlist-container");
-
-if (items.length === 0) {
-  container.innerHTML = "<p style='text-align:center;'>You have no wishlist items. Go to the Edit page to add some!</p>";
-} else {
-  items.forEach((item, index) => {
-    if (item.archived || !item.confirmed) return;
-    const div = document.createElement("div");
-    div.className = "wishlist-item";
-
-    const percent = item.saved && item.price ? Math.min((item.saved / item.price) * 100, 100) : 0;
-
-    div.innerHTML = `
-      <img src="${item.image}" alt="Wishlist Image">
-      <h2>${item.name}</h2>
-      <p>${item.description}</p>
-      <p><strong>Price:</strong> $${item.price}</p>
-      <div class="progress">
-        <div class="progress-bar" id="progress-${index}" style="width: ${percent}%"></div>
-      </div>
-      ${percent >= 100 ? `<button onclick="archiveItem(${index})" class="archive-btn">Archive</button>` : ""}
-      <div style="margin-top: 0.5rem;">
-        <button class="view-btn" onclick="showPopup(${index})">View Details</button>
-      </div>
-    `;
-    container.appendChild(div);
-  });
-}
-
-function archiveItem(index) {
-  if (confirm("Are you sure you want to archive this item?")) {
-    items[index].archived = true;
-    localStorage.setItem("wishlistItems", JSON.stringify(items));
-    location.reload();
-  }
-}
-
-const leftover = parseFloat(localStorage.getItem("leftoverSavings")) || 0;
-if (leftover > 0) {
-  const leftoverDiv = document.createElement("div");
-  leftoverDiv.className = "wishlist-item";
-  leftoverDiv.innerHTML = `
-    <h2>Leftover Savings</h2>
-    <p>This is unassigned money from past paychecks.</p>
-    <p><strong>Total:</strong> $${leftover.toFixed(2)}</p>
-  `;
-  container.appendChild(leftoverDiv);
-}
-
-function showPopup(index) {
-    const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
-    const item = items[index];
-    const transactions = item.transactions || [];
-
-    const list = document.getElementById("transaction-list");
-    list.innerHTML = "";
-
-    if (transactions.length === 0) {
-      list.innerHTML = "<li>No transactions yet.</li>";
-    } else {
-      transactions.forEach((t, i) => {
-        const li = document.createElement("li");
-        const date = new Date(t.date);
-        const formattedDate = date.toLocaleDateString("en-NZ"); // DD/MM/YYYY
-        li.textContent = `$${t.amount} — ${formattedDate}`;
-        list.appendChild(li);
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+      }
+      
+      const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+      const container = document.getElementById("wishlist-container");
+      
+      if (items.length === 0) {
+      container.innerHTML = "<p style='text-align:center;'>You have no wishlist items. Go to the Edit page to add some!</p>";
+      } else {
+      items.forEach((item, index) => {
+        if (item.archived || !item.confirmed) return;
+        const div = document.createElement("div");
+        div.className = "wishlist-item";
+      
+        const percent = item.saved && item.price ? Math.min((item.saved / item.price) * 100, 100) : 0;
+      
+        div.innerHTML = `
+          <img src="${item.image}" alt="Wishlist Image">
+          <h2>${item.name}</h2>
+          <p>${item.description}</p>
+          <p><strong>Price:</strong> $${item.price}</p>
+          <div class="progress">
+            <div class="progress-bar" id="progress-${index}" style="width: ${percent}%"></div>
+          </div>
+          ${percent >= 100 ? `<button onclick="archiveItem(${index})" class="archive-btn">Archive</button>` : ""}
+          <div style="margin-top: 0.5rem;">
+            <button class="view-btn" onclick="showPopup(${index})">View Details</button>
+          </div>
+        `;
+        container.appendChild(div);
       });
-
-    }
-
-    document.getElementById("popup-overlay").style.display = "flex";
-  }
-
-  function hidePopup() {
-    document.getElementById("popup-overlay").style.display = "none";
-  }
-
-</script>
-
-</body>
+      }
+      
+      function archiveItem(index) {
+      if (confirm("Are you sure you want to archive this item?")) {
+        items[index].archived = true;
+        localStorage.setItem("wishlistItems", JSON.stringify(items));
+        location.reload();
+      }
+      }
+      
+      const leftover = parseFloat(localStorage.getItem("leftoverSavings")) || 0;
+      if (leftover > 0) {
+      const leftoverDiv = document.createElement("div");
+      leftoverDiv.className = "wishlist-item";
+      leftoverDiv.innerHTML = `
+        <h2>Leftover Savings</h2>
+        <p>This is unassigned money from past paychecks.</p>
+        <p><strong>Total:</strong> $${leftover.toFixed(2)}</p>
+      `;
+      container.appendChild(leftoverDiv);
+      }
+      
+      function showPopup(index) {
+        const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+        const item = items[index];
+        const transactions = item.transactions || [];
+      
+        const list = document.getElementById("transaction-list");
+        list.innerHTML = "";
+      
+        if (transactions.length === 0) {
+          list.innerHTML = "<li>No transactions yet.</li>";
+        } else {
+          transactions.forEach((t, i) => {
+            const li = document.createElement("li");
+            const date = new Date(t.date);
+            const formattedDate = date.toLocaleDateString("en-NZ"); // DD/MM/YYYY
+            li.textContent = `$${t.amount} — ${formattedDate}`;
+            list.appendChild(li);
+          });
+      
+        }
+      
+        document.getElementById("popup-overlay").style.display = "flex";
+      }
+      
+      function hidePopup() {
+        document.getElementById("popup-overlay").style.display = "none";
+      }
+      
+      document.getElementById('newUserBtn').addEventListener('click', function () {
+      const confirmReset = confirm("Are you sure you want to reset everything and start as a new user? This will delete all saved data.");
+      if (confirmReset) {
+        localStorage.clear();
+        sessionStorage.clear();
+        location.reload();
+      }
+      });
+      
+      
+    </script>
+  </body>

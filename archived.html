@@ -1,46 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Archived Goals</title>
-  <link rel="stylesheet" href="stylesheet.css" />
-</head>
-<body>
-  <header>
-    Archived Items
-    <div class="menu">
-      <a href="lysted.html">← Back to Wishlist</a>
-    </div>
-  </header>
-
-  <div class="container">
-    <h1>Completed Wishlist Goals</h1>
-    <div id="archived-container"></div>
-  </div>
-
-  <script>
-    const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
-    const container = document.getElementById("archived-container");
-
-    const archived = items.filter(item => item.archived);
-
-    if (archived.length === 0) {
-      container.innerHTML = "<p style='text-align:center;'>You haven't archived any items yet.</p>";
-    } else {
-      archived.forEach((item) => {
-        const div = document.createElement("div");
-        div.className = "wishlist-item";
-        div.innerHTML = `
-          <img src="${item.image}" alt="Wishlist Image">
-          <h2>${item.name}</h2>
-          <p>${item.description}</p>
-          <p><strong>Price:</strong> $${item.price}</p>
-          <p><strong>Saved:</strong> $${item.saved}</p>
-          <p style="color: green; font-weight: bold;">✔ Goal Achieved!</p>
-        `;
-        container.appendChild(div);
-      });
-    }
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archived Wishlist Items</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+      margin: 0;
+      background-color: #EEF4ED;
+      color: #333;
+      }
+      header {
+      background-color: #0B2545;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-family: "Edu NSW ACT Cursive", cursive;
+      font-size: 2rem;
+      font-weight: 400;
+      position: relative;
+      }
+      .home-btn {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      }
+      .home-btn img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
+      }
+      h1 {
+      text-align: center;
+      color: #13315C;
+      font-family: "Edu NSW ACT Cursive", cursive;
+      font-weight: 400;
+      padding-top: 2%;
+      }
+      .container {
+      padding: 1rem;
+      }
+      .wishlist-item {
+      font-family: "Quicksand", sans-serif;
+      background-color: white;
+      border: 2px solid #C5DDC1;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      }
+      .wishlist-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      }
+      .wishlist-item h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      }
+      .wishlist-item p {
+      margin: 0.5rem 0;
+      font-weight: bold;
+      }
+      footer {
+      font-family: "Quicksand", sans-serif;
+      background-color: #134074;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #EEF4ED;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="lysted.html" class="home-btn">
+      <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home" />
+      </a>
+      Lysted
+    </header>
+    <h1>Archived Wishlist Items</h1>
+    <div class="container" id="archived-container"></div>
+    <footer>
+      &copy; 2025 Lysted Tracker
+    </footer>
+    <script>
+      const container = document.getElementById("archived-container");
+      const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+      
+      const archivedItems = items.filter(item => item.archived);
+      
+      if (archivedItems.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>No archived items yet.</p>";
+      } else {
+        archivedItems.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "wishlist-item";
+          div.innerHTML = `
+            <img src="${item.image}" alt="Wishlist Item">
+            <h2>${item.name}</h2>
+            <p>${item.description}</p>
+            <p><strong>Price:</strong> $${item.price}</p>
+          `;
+          container.appendChild(div);
+        });
+      }
+    </script>
+  </body>
 </html>

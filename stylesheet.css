@@ -1,120 +1,121 @@
 body {
-      margin: 0;
-      background-color:#EEF4ED;
-      color: #333;
-    }
+  margin: 0;
+  background-color: #EEF4ED;
+  color: #333;
+}
 
-    header {
-      background-color: #0B2545;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      font-family: "Edu NSW ACT Cursive", cursive;
-      font-optical-sizing: auto;
-      font-weight: 400;
-      font-style: normal;
-      font-size: 2rem;
-      position: relative;
-    }
+header {
+  background-color: #0B2545;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  position: relative;
+}
 
-    .menu-icon {
-      position: absolute;
-      left: 1rem;
-      top: 1rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+.menu-icon {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
-    .menu {
-      font-family: "Quicksand", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 300;
-      font-style: normal;
-      font-size: 1rem;
-      position: absolute;
-      top: 4rem;
-      left: 0;
-      background-color:#C5DDC1;
-      display: none;
-      flex-direction: column;
-      padding: 1rem;
-    }
+.menu {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1rem;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  background-color: #C5DDC1;
+  display: none;
+  flex-direction: column;
+  padding: 1rem;
+}
 
-    .menu a {
-      color:#13315C;
-      text-decoration: none;
-      margin: 0.5rem 0;
-      font-weight: bold;
-    }
+.menu a {
+  color: #13315C;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
 
-    .container {
-      padding: 1rem;
-    }
+.container {
+  padding: 1rem;
+}
 
-    h1 {
-      text-align: center;
-      color:#13315C;
-      font-family: "Edu NSW ACT Cursive", cursive;
-      font-optical-sizing: auto;
-      font-weight: 400;
-      font-style: normal;
-      padding-top: 2%;
-    }
+h1 {
+  text-align: center;
+  color: #13315C;
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  padding-top: 2%;
+}
 
-    .wishlist-item {
-      background-color: white;
-      border: 2px solid #C5DDC1;
-      border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
+.wishlist-item {
+  background-color: white;
+  border: 2px solid #C5DDC1;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
 
-    .wishlist-item img {
-      width: 50%;
-      border-radius: 10px;
-    }
+.wishlist-item img {
+  width: 50%;
+  border-radius: 10px;
+}
 
-    .wishlist-item h2 {
-      font-family: "Playfair Display", serif;
-      font-optical-sizing: auto;
-      font-weight: 600;
-      font-style: normal;
-    }
+.wishlist-item h2 {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
 
-    .wishlist-item p {
-      margin: 0.5rem 0;
-      font-family: "Quicksand", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 700;
-      font-style: normal;
-    }
+.wishlist-item p {
+  margin: 0.5rem 0;
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
 
-    .progress {
-      background-color:#C5D6E6;
-      border-radius: 10px;
-      overflow: hidden;
-      height: 12px;
-      margin-top: 0.5rem;
-    }
+.progress {
+  background-color: #C5D6E6;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 12px;
+  margin-top: 0.5rem;
+}
 
-    .progress-bar {
-      height: 100%;
-      background-color:#13315C;
-      width: 60%;
-    }
+.progress-bar {
+  height: 100%;
+  background-color: #13315C;
+  width: 60%;
+}
 
-    footer {
-      font-family: "Quicksand", sans-serif;
-      background-color:#134074;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #EEF4ED;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-    }
+footer {
+  font-family: "Quicksand", sans-serif;
+  background-color: #134074;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #EEF4ED;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -177,4 +178,38 @@ body {
   font-weight: bold;
   cursor: pointer;
   margin-top: 0.5rem;
+}
+
+.view-btn {
+  background-color: #C5DDC1;
+  /* soft green, matches archive-btn bg */
+  color: #13315C;
+  /* dark blue text */
+  padding: 0.5rem 1.2rem;
+  /* comfortable clickable area */
+  border: none;
+  border-radius: 6px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(19, 49, 92, 0.2);
+}
+
+
+.new-user-btn {
+  background-color: #C5DDC1;
+  /* soft green */
+  color: #13315C;
+  /* dark blue text */
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(19, 49, 92, 0.2);
+  margin-left: 1rem;
+  /* some spacing if beside other footer content */
 }
