@@ -167,3 +167,14 @@ body {
   color: #13315C;
   font-weight: bold;
 }
+
+.archive-btn {
+  background-color: #C5DDC1;
+  color: #13315C;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
