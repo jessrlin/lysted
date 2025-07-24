@@ -20,16 +20,25 @@
     </header>
     
     <div class="container">
-      <h1>My Wishlist</h1>
+      <h1 >My Wishlist</h1>
       <div id="wishlist-container"></div>
     </div>
 
-  <footer>
-    &copy; 2025 Lysted Tracker ~
-    Love it? Lyst it
-  </footer>
+    <div id="popup-overlay" style="display: none;" class="popup-overlay">
+      <div class="popup">
+        <span class="close-btn" onclick="hidePopup()">&times;</span>
+        <h2>Transaction History</h2>
+        <ul id="transaction-list"></ul>
+      </div>
+    </div>
 
-  <script>
+
+    <footer>
+      &copy; 2025 Lysted Tracker ~
+      Love it? Lyst it!
+    </footer>
+
+<script>
   function toggleMenu() {
     const menu = document.getElementById("menu");
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
@@ -56,12 +65,52 @@ if (items.length === 0) {
         <div class="progress-bar" id="progress-${index}" style="width: ${percent}%"></div>
       </div>
       <div style="margin-top: 0.5rem;">
-        <a href="item.html?id=${index}" style="text-decoration:none; color:#13315C;">View Details</a>
+        <button class="view-btn" onclick="showPopup(${index})">View Details</button>
       </div>
     `;
     container.appendChild(div);
   });
 }
+
+const leftover = parseFloat(localStorage.getItem("leftoverSavings")) || 0;
+if (leftover > 0) {
+  const leftoverDiv = document.createElement("div");
+  leftoverDiv.className = "wishlist-item";
+  leftoverDiv.innerHTML = `
+    <h2>Leftover Savings</h2>
+    <p>This is unassigned money from past paychecks.</p>
+    <p><strong>Total:</strong> $${leftover.toFixed(2)}</p>
+  `;
+  container.appendChild(leftoverDiv);
+}
+
+function showPopup(index) {
+    const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+    const item = items[index];
+    const transactions = item.transactions || [];
+
+    const list = document.getElementById("transaction-list");
+    list.innerHTML = "";
+
+    if (transactions.length === 0) {
+      list.innerHTML = "<li>No transactions yet.</li>";
+    } else {
+      transactions.forEach((t, i) => {
+        const li = document.createElement("li");
+        const date = new Date(t.date);
+        const formattedDate = date.toLocaleDateString("en-NZ"); // DD/MM/YYYY
+        li.textContent = `$${t.amount} — ${formattedDate}`;
+        list.appendChild(li);
+      });
+
+    }
+
+    document.getElementById("popup-overlay").style.display = "flex";
+  }
+
+  function hidePopup() {
+    document.getElementById("popup-overlay").style.display = "none";
+  }
 
 </script>
 
