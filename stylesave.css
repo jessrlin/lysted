@@ -1,0 +1,114 @@
+body {
+	margin: 0;
+	font-family: 'Quicksand', sans-serif;
+	background-color: #EEF4ED;
+	color: #333;
+}
+
+header {
+	background-color: #0B2545;
+	color: white;
+	padding: 1rem;
+	text-align: center;
+	font-family: "Edu NSW ACT Cursive", cursive;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 2rem;
+	position: relative;
+}
+
+input,
+textarea,
+button {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.home-btn {
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.home-btn img {
+	width: 24px;
+	height: 24px;
+	filter: brightness(0) invert(1);
+}
+
+.container {
+	padding: 1rem;
+	max-width: 600px;
+	margin: auto;
+}
+
+h1 {
+	text-align: center;
+	color: #13315C;
+	font-family: "Edu NSW ACT Cursive", cursive;
+	font-weight: 400;
+	font-style: normal;
+	padding-top: 2%;
+}
+
+.saving-item {
+	background-color: white;
+	border: 2px solid #C5DDC1;
+	border-radius: 12px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+input[type='number'] {
+	width: 100%;
+	padding: 0.5rem;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	margin-top: 0.5rem;
+}
+
+button {
+	display: block;
+    margin: 1rem auto;
+    background-color: #13315C;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(19, 49, 92, 0.2);
+}
+
+.action-btn {
+  background-color: #13315C;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(19, 49, 92, 0.2);
+  display: block;
+  margin: 1.5rem auto;
+}
+
+footer {
+	background-color: #134074;
+	text-align: center;
+	padding: 1rem;
+	font-size: 0.9rem;
+	color: #EEF4ED;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}

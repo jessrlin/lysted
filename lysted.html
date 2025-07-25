@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lysted</title>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="stylemain.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   </head>
+
   <body>
     <header>
-      <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+      <div class="top-icons">
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <div class="user-icon" onclick="toggleUserPopup()">
+          <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="User">
+        </div>
+      </div>
       Lysted
       <div class="menu" id="menu">
         <a href="savings.html">Manage Savings</a>
@@ -19,10 +25,23 @@
         <a href="archived.html">Archived Items</a>
       </div>
     </header>
+
     <div class="container">
       <h1 >My Wishlist</h1>
       <div id="wishlist-container"></div>
     </div>
+
+    <!-- Resetting data, person icon -->
+    <div id="user-popup" class="popup-overlay" style="display: none;">
+      <div class="popup">
+        <span class="close-btn" onclick="toggleUserPopup()">&times;</span>
+        <h2>User Options</h2>
+        <p>This will reset your wishlist and savings data.</p>
+        <button onclick="confirmReset()" class="archive-btn">Reset Data</button>
+      </div>
+    </div>
+    
+    <!-- Transaction history -->
     <div id="popup-overlay" style="display: none;" class="popup-overlay">
       <div class="popup">
         <span class="close-btn" onclick="hidePopup()">&times;</span>
@@ -30,11 +49,12 @@
         <ul id="transaction-list"></ul>
       </div>
     </div>
+
     <footer>
       &copy; 2025 Lysted Tracker ~
       Love it? Lyst it!
-      <button id="newUserBtn" class="new-user-btn" style="margin-left: 1rem;">New User</button>
     </footer>
+
     <script>
       function toggleMenu() {
         const menu = document.getElementById("menu");
@@ -44,33 +64,38 @@
       const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
       const container = document.getElementById("wishlist-container");
       
+      //No wishlist item loaded
       if (items.length === 0) {
       container.innerHTML = "<p style='text-align:center;'>You have no wishlist items. Go to the Edit page to add some!</p>";
-      } else {
+      } 
+
+      //Render confirmed items (No archived items to be shown)
+      else {
       items.forEach((item, index) => {
-        if (item.archived || !item.confirmed) return;
-        const div = document.createElement("div");
-        div.className = "wishlist-item";
-      
-        const percent = item.saved && item.price ? Math.min((item.saved / item.price) * 100, 100) : 0;
-      
-        div.innerHTML = `
-          <img src="${item.image}" alt="Wishlist Image">
-          <h2>${item.name}</h2>
-          <p>${item.description}</p>
-          <p><strong>Price:</strong> $${item.price}</p>
-          <div class="progress">
-            <div class="progress-bar" id="progress-${index}" style="width: ${percent}%"></div>
-          </div>
-          ${percent >= 100 ? `<button onclick="archiveItem(${index})" class="archive-btn">Archive</button>` : ""}
-          <div style="margin-top: 0.5rem;">
-            <button class="view-btn" onclick="showPopup(${index})">View Details</button>
-          </div>
-        `;
-        container.appendChild(div);
+      if (item.archived || !item.confirmed) return;
+      const div = document.createElement("div");
+      div.className = "wishlist-item";
+    
+      const percent = item.saved && item.price ? Math.min((item.saved / item.price) * 100, 100) : 0;
+    
+      div.innerHTML = `
+        <img src="${item.image}" alt="Wishlist Image">
+        <h2>${item.name}</h2>
+        <p>${item.description}</p>
+        <p><strong>Price:</strong> $${item.price}</p>
+        <div class="progress">
+          <div class="progress-bar" id="progress-${index}" style="width: ${percent}%"></div>
+        </div>
+        ${percent >= 100 ? `<button onclick="archiveItem(${index})" class="archive-btn">Archive</button>` : ""}
+        <div style="margin-top: 0.5rem;">
+          <button class="view-btn" onclick="showPopup(${index})">View Details</button>
+        </div>
+      `;
+      container.appendChild(div);
       });
       }
       
+      //Archiving an item
       function archiveItem(index) {
       if (confirm("Are you sure you want to archive this item?")) {
         items[index].archived = true;
@@ -79,6 +104,7 @@
       }
       }
       
+      //Tile for leftover savings
       const leftover = parseFloat(localStorage.getItem("leftoverSavings")) || 0;
       if (leftover > 0) {
       const leftoverDiv = document.createElement("div");
@@ -91,6 +117,7 @@
       container.appendChild(leftoverDiv);
       }
       
+      //Transaction history popup in dd/mm/yy
       function showPopup(index) {
         const items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
         const item = items[index];
@@ -105,7 +132,7 @@
           transactions.forEach((t, i) => {
             const li = document.createElement("li");
             const date = new Date(t.date);
-            const formattedDate = date.toLocaleDateString("en-NZ"); // DD/MM/YYYY
+            const formattedDate = date.toLocaleDateString("en-NZ");
             li.textContent = `$${t.amount} — ${formattedDate}`;
             list.appendChild(li);
           });
@@ -115,19 +142,27 @@
         document.getElementById("popup-overlay").style.display = "flex";
       }
       
+      //When closed, hide
       function hidePopup() {
         document.getElementById("popup-overlay").style.display = "none";
       }
       
-      document.getElementById('newUserBtn').addEventListener('click', function () {
-      const confirmReset = confirm("Are you sure you want to reset everything and start as a new user? This will delete all saved data.");
-      if (confirmReset) {
-        localStorage.clear();
-        sessionStorage.clear();
-        location.reload();
+      //When unopened, hide
+      function toggleUserPopup() {
+        const popup = document.getElementById("user-popup");
+        popup.style.display = popup.style.display === "flex" ? "none" : "flex";
       }
-      });
+
+      //Ensure use is happy to reset data, then clear
+      function confirmReset() {
+        const confirmed = confirm("Are you sure you want to reset all your data?");
+        if (confirmed) {
+          localStorage.clear();
+          sessionStorage.clear();
+          location.reload();
+        }
+      }
       
-      
+  
     </script>
   </body>

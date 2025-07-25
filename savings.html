@@ -1,99 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lysted</title>
+    <link rel="stylesheet" href="stylesave.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   </head>
-  <style>
-    body {
-    margin: 0;
-    font-family: 'Quicksand', sans-serif;
-    background-color:#EEF4ED;
-    color: #333;
-    }
-    header {
-    background-color: #0B2545;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    font-family: "Edu NSW ACT Cursive", cursive;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 2rem;
-    position: relative;
-    }
-    .home-btn {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    }
-    .home-btn img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1);
-    }
-    .container {
-    padding: 1rem;
-    max-width: 600px;
-    margin: auto;
-    }
-    h1 {
-    text-align: center;
-    color:#13315C;
-    font-family: "Edu NSW ACT Cursive", cursive;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    padding-top: 2%;
-    }
-    .saving-item {
-    background-color: white;
-    border: 2px solid #C5DDC1;
-    border-radius: 12px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    }
-    input[type='number'] {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    margin-top: 0.5rem;
-    }
-    button {
-    background-color: #13315C;
-    color: white;
-    padding: 0.7rem 1.2rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    display: block;
-    margin: 2rem auto;
-    }
-    .total-pay {
-    margin-bottom: 2rem;
-    }
-    footer {
-    background-color: #134074;
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #EEF4ED;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    }
-  </style>
-  </head>
+  
   <body>
     <header>
       <a href="lysted.html" class="home-btn">
@@ -101,141 +17,163 @@
       </a>
       Lysted
     </header>
+
+     <!-- Enter paycheck, Confirm Paycheck button -->
     <div class="container">
       <h1>Distribute Your Savings</h1>
       <label for="paycheck">Enter Total Paycheck Amount ($):</label>
-      <input type="number" id="paycheck" class="total-pay" placeholder="e.g. 100" min="1" max="1000000" step="1" oninput="sanitizeNumberInput(this)">
-      <button id="confirmBtn" onclick="confirmPaycheck()">Confirm Paycheck</button>
+      <input type="number" id="paycheck" class="total-pay" placeholder="e.g. 100" min="1" max="1000000" step="0.01" oninput="sanitizeNumberInput(this)">
+      <button id="confirmBtn" class="action-btn" onclick="confirmPaycheck()">Confirm Paycheck</button>
+      
+       <!-- Enter savings, Apply savings button -->
       <div id="savings-container"></div>
-      <button onclick="applySavings()">Apply Savings</button>
+      <button id="applyBtn" class="action-btn" onclick="applySavings()" style="display: none;">Apply Savings</button>
     </div>
+
     <footer>
-      &copy; 2025 Lysted Tracker
+      &copy; 2025 Lysted Tracker ~
+      Love it? Lyst it!
     </footer>
+    
     <script>
-      let items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
-      const savingsContainer = document.getElementById("savings-container");
-      
-      if (items.length === 0) {
-        savingsContainer.innerHTML = "<p style='text-align:center;'>No wishlist items found.</p>";
-      } else {
-        items.forEach((item, index) => {
-          const div = document.createElement("div");
-          div.className = "saving-item";
-          div.innerHTML = `
-            <h3>${item.name}</h3>
-            <p>Goal: $${item.price}</p>
-            <p>Currently Saved: $${item.saved || 0}</p>
-            <label for="amount-${index}">Add amount to this goal:</label>
-            <input type="number" id="amount-${index}" placeholder="e.g. 25" max="${Math.max(item.price - (item.saved || 0), 0)}" min="1" step="1" oninput="sanitizeNumberInput(this)">
-          `;
-          savingsContainer.appendChild(div);
-        });
-      }
-      
-      function sanitizeNumberInput(input) {
-      // Prevent invalid characters like e, +, -, etc.
+    let items = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+    items = items.filter(item => !item.archived); // hide archived
+    const savingsContainer = document.getElementById("savings-container");
+
+    //If no items to be allocated money, if there is, display
+    if (items.length === 0) {
+      savingsContainer.innerHTML = "<p style='text-align:center;'>No wishlist items found.</p>";
+    } else {
+      items.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "saving-item";
+        div.innerHTML = `
+          <h3>${item.name}</h3>
+          <p>Goal: $${item.price}</p>
+          <p>Currently Saved: $${item.saved || 0}</p>
+          <label for="amount-${index}">Add amount to this goal:</label>
+          <input type="number" id="amount-${index}" placeholder="e.g. 25" max="1000000" min="1" step="0.01" oninput="sanitizeNumberInput(this)">
+        `;
+        savingsContainer.appendChild(div);
+      });
+    }
+    
+    //Restrictions to price input: Only numbers and 1 "." Min=1 and Max= 1Mil
+    function sanitizeNumberInput(input) {
       input.value = input.value.replace(/[^0-9.]/g, '');
-      
-      // Ensure value is not negative
+
       if (parseFloat(input.value) < 0) {
-      input.value = "";
+        input.value = "";
       }
-      
-      // Enforce max limit of 1,000,000
+
       if (parseFloat(input.value) > 1000000) {
-      input.value = "1000000";
+        input.value = "1000000";
       }
+    }
+
+    function preventInvalidKeys(event) {
+      const invalidKeys = ['e', 'E', '+', '-']; 
+      if (invalidKeys.includes(event.key)) {
+        event.preventDefault();
       }
-      
-      function confirmPaycheck() {
+    }
+
+    //Confirm paycheck + confirmations and checks (closed once input is accepted and confirmed to continue)
+    function confirmPaycheck() {
       const paycheckInput = document.getElementById("paycheck");
       const applyBtn = document.getElementById("applyBtn");
-      
+      const confirmBtn = document.getElementById("confirmBtn");
+
       const totalPay = parseFloat(paycheckInput.value);
-      
+
       if (isNaN(totalPay) || totalPay <= 0 || totalPay > 1000000) {
-      alert("Please enter a valid paycheck amount between 0 and 1,000,000.");
-      return;
+        alert("Please enter a valid paycheck amount between 1 and 1,000,000.");
+        return;
       }
-      
+
       const isConfirmed = confirm(`Confirm paycheck amount: $${totalPay.toFixed(2)}?`);
       if (isConfirmed) {
-      // Disable the input to prevent changes
-      paycheckInput.disabled = true;
-      applyBtn.disabled = false; // Enable apply button
-      document.getElementById("confirmBtn").disabled = true; // Disable confirm to prevent re-confirming
+        paycheckInput.disabled = true;
+        confirmBtn.style.display = "none";
+        applyBtn.style.display = "block";
       }
-      }
-      
-      function applySavings() {
+    }
+
+    //Applying savings + confirmations and checks (enabled once confirm paycheck field is validated and accepted)
+    function applySavings() {
       const paycheckInput = document.getElementById("paycheck");
       const totalPay = parseFloat(paycheckInput.value);
-      
+
       if (isNaN(totalPay) || totalPay <= 0) {
         alert("Please enter a valid paycheck amount.");
         return;
       }
-      
+
       let totalAllocated = 0;
       const updates = [];
-      
-      items.forEach((item, index) => {
+
+      for (let index = 0; index < items.length; index++) {
         const input = document.getElementById(`amount-${index}`);
+        sanitizeNumberInput(input);
         const amount = parseFloat(input.value);
-      
-      if (!isNaN(amount) && amount > 0) {
-        const remaining = item.price - (item.saved || 0);
-        if (amount > remaining) {
-          alert(`You can't add $${amount} to "${item.name}". Only $${remaining.toFixed(2)} left to reach the goal.`);
-          return;
+
+        if (!isNaN(amount) && amount > 0) {
+          const item = items[index];
+          const remaining = item.price - (item.saved || 0);
+
+          if (amount > remaining) {
+            alert(`You entered $${amount} for "${item.name}", but only $${remaining.toFixed(2)} is needed to reach the goal.`);
+            return;
+          }
+
+          totalAllocated += amount;
+          updates.push({ index, amount });
         }
-        totalAllocated += amount;
-        updates.push({ index, amount });
       }
-      
-      });
-      
+
       if (totalAllocated > totalPay) {
-      alert("You've allocated more than your total paycheck.");
-      return;
+        alert(`You've allocated $${totalAllocated.toFixed(2)}, which is more than your paycheck of $${totalPay.toFixed(2)}.`);
+        return;
       }
-      
+
+      const confirmApply = confirm(`You're about to apply $${totalAllocated.toFixed(2)} of your $${totalPay.toFixed(2)} paycheck. Continue?`);
+      alert("Savings applied successfully!");
+      if (!confirmApply) return;
+
       updates.forEach(({ index, amount }) => {
-      const item = items[index];
-      item.saved = (parseFloat(item.saved) || 0) + amount;
-      
-      if (!item.transactions) item.transactions = [];
-      item.transactions.push({
-        amount: amount,
-        date: new Date().toLocaleDateString("en-NZ")
+        const item = items[index];
+        item.saved = (parseFloat(item.saved) || 0) + amount;
+
+        if (!item.transactions) item.transactions = [];
+        item.transactions.push({
+          amount: amount,
+          date: new Date().toISOString().split("T")[0]
+        });
       });
-      });
-      
+
       localStorage.setItem("wishlistItems", JSON.stringify(items));
-      
+
+      //Ask to add to leftover savings
       const leftover = totalPay - totalAllocated;
       if (leftover > 0) {
-      const useLeftover = confirm(`You have $${leftover.toFixed(2)} leftover. Do you want to add it to your general savings?`);
-      if (useLeftover) {
-        const existingLeftover = parseFloat(localStorage.getItem("leftoverSavings")) || 0;
-        const updatedLeftover = existingLeftover + leftover;
-        localStorage.setItem("leftoverSavings", updatedLeftover.toFixed(2));
-        alert(`$${leftover.toFixed(2)} added to general savings.`);
+        const useLeftover = confirm(`You have $${leftover.toFixed(2)} leftover. Do you want to add it to your general savings?`);
+        if (useLeftover) {
+          const existingLeftover = parseFloat(localStorage.getItem("leftoverSavings")) || 0;
+          const updatedLeftover = existingLeftover + leftover;
+          localStorage.setItem("leftoverSavings", updatedLeftover.toFixed(2));
+          alert(`$${leftover.toFixed(2)} added to general savings.`);
+        }
       }
-      }
-      
+
+      //Input
       paycheckInput.value = "";
       items.forEach((_, index) => {
-      document.getElementById(`amount-${index}`).value = "";
+        document.getElementById(`amount-${index}`).value = "";
       });
-      
+
       location.reload();
-      
-      }
-      
-      
-      
+    }
     </script>
+
   </body>
 </html>
